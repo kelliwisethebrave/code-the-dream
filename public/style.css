@@ -1,0 +1,235 @@
+body {
+  background-image: url('');
+  background-size: cover;
+  background-color: #b8ccbb; 
+  background: linear-gradient(135deg, #f5f7fa 0%, #b8ccbb 100%);
+  min-height: 100vh;
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 1em;
+  font-weight: 300;
+  font-style: normal;
+  color: #5A5A5A;
+  /* Style the links within the list items */
+}
+
+body a {
+  color: #b8ccbb; /* Text color */
+  text-decoration: none; /* Remove underline from links */
+}
+
+/* Change link color on hover */
+body a:hover {
+  color: #f5cde4; /* Darker background on hover */
+}
+
+/* Style for an active/current link */
+body a.active {
+  background-color: #04AA6D; /* Example active link background */
+  color: white;
+}
+
+
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+/*
+// <weight>: Use a value from 200 to 1000
+// <uniquifier>: Use a unique and descriptive class name
+
+/*.nunito-<uniquifier> {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}*/
+
+.title h1 {
+  font-size: 50px;
+  font-family: eixample-dip, sans-serif;
+  font-style: normal;
+  font-weight: 200;
+  color: #5A5A5A;
+
+}
+
+.nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* Style the main unordered list */
+ul.menu {
+  list-style-type: none; /* Remove bullet points */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  overflow: hidden; /* Clear floats for containing floated list items */
+  background-color: #3e3e3e; /* Example background color for the menu */
+}
+
+/* Style the list items */
+ul.menu li {
+  float: left; /* Arrange list items horizontally */
+}
+
+/* Style the links within the list items */
+ul.menu li a {
+  display: block; /* Make the entire link area clickable */
+  color: white; /* Text color */
+  text-align: center; /* Center text within the link */
+  padding: 14px 16px; /* Padding around the text */
+  text-decoration: none; /* Remove underline from links */
+}
+
+/* Change link color on hover */
+ul.menu li a:hover {
+  background-color: #b8ccbb; /* Darker background on hover */
+}
+
+/* Style for an active/current link */
+ul.menu li a.active {
+  background-color: #04AA6D; /* Example active link background */
+  color: white;
+}
+
+
+
+h1 {
+  font-family: eixample-dip, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: #5A5A5A;
+}
+
+h2, h3 {
+  font-family: eixample-dip, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: #5A5A5A;
+}
+
+p {
+    color: #000000;
+}
+
+.main {
+  text-align: center;
+  margin: 0 auto;
+  padding: 20px;
+  /*padding: 12px;*/
+  max-width: 950px;
+  /*margin: 0px;*/
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  color: #5A5A5A;
+  margin-bottom: 15px;
+  background: #ffffff;
+}
+
+.main img {
+  width: 70%;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.main-text {
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+}
+
+
+.breed-info {
+  border-radius: 24px;
+  padding: 12px;
+  margin: 10px 0;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers items like text block + image */
+  padding: 1rem;
+  border: 1px solid #ccc;
+  font-size: 1.1rem;
+  
+}
+
+.breed-info img {
+  width: 85%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.breed-info p, h3 {
+  color: #555;
+  text-align: left;
+  text-align: left;   /* makes the text left-aligned */
+  width: 100%;        /* ensures the text block fills the card width */
+  margin: 0.25rem 0;
+}
+
+.breed-info strong {
+  font-weight: 600;
+}
+
+.breed-info .text-block {
+  width: 85%;            /* match image width */
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+
+.breed-cards {
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: 1rem;
+}
+
+
+@media (min-width: 768px) {
+  .breed-cards {
+    grid-template-columns: repeat(2, 1fr); /* 3 cards per row */
+  }
+}
+
+.my-dogs-cards {
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: .01rem;
+}
+
+
+@media (min-width: 768px) {
+  .my-dogs-cards {
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  }
+}
+
+.my-dogs-cards-2 {
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: .01rem;
+}
+
+
+@media (min-width: 768px) {
+  .my-dogs-cards-2 {
+    grid-template-columns: repeat(2, 1fr); /* 3 cards per row */
+  }
+}
+
+/*
+.breed-info h3 {
+  margin: 0 0 6px;
+}*/
+
+
+#error-message {
+  display: none;
+}

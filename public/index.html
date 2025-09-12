@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dog Breed Search</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.typekit.net/bwx5tcu.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Story+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="main">
+  <div class="header-container">
+  <img src="images/pawprintbg_large.png" width="50%" alt="Paw Finder, a dog API project"></div>
+  
+    <div class="nav">
+      <ul class="menu">
+      <li><a href="my_dogs.html">My dogs and their breeds</a> </li>
+      <li><a href="index.html">Breed search</a></li>
+      <li><a href="random.html">Random picture & breed</a></li>
+      </ul>
+    </div>
+    <div class="main-text">
+    <h1>Can't find a certain breed?</h1>
+    
+    <p>Neither could I - not all breeds are available in the API. In the meantime, I created a page with information about the breeds that I've had in my life, <a href="my_dogs.html">and you can view it here</a>.
+    There you can also see information pulled from the API about similar breeds.
+    </p>
+    <h1>Search dog breed information</h1>
+    <input type="text" id="searchedBreed" placeholder="Enter breed name">
+    <button id="fetchButton">Fetch dog breed info</button>
+    <div id="dogContainer">
+      <div id="results"></div>
+    <p id="error-message"></p>
+</div>
+</div></div></div>
+  <script src="index.js"></script>
+</body>
+</html>
