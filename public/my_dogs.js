@@ -68,6 +68,7 @@ async function fetchAndDisplayBreeds(breedNames, containerId) {
 
             const image = document.createElement("img");
             image.src = groupBreed.image?.url || "No image available";
+            image.alt = groupBreed.name;
 
             const textBlock = document.createElement("div");
             textBlock.classList.add("text-block");

@@ -54,19 +54,30 @@ async function fetchDog() {
             const card = document.createElement("div");
             card.classList.add("breed-info");
 
-            const name = document.createElement("h3");
+            const name = document.createElement("h2");
             name.textContent = breed.name;
 
             const temperament = document.createElement("p");
-            temperament.textContent = "Temperament: " + breed.temperament || "No temperament info";
+            temperament.innerHTML = "<strong>Temperament:</strong> " + (breed.temperament || "No temperament info");
+
+            const bredFor = document.createElement("p");
+            bredFor.innerHTML = "<strong>Bred for:</strong> " + (breed.bred_for || "No bred for info");
 
             const image = document.createElement("img");
             image.src = breed.image?.url || "No image available";
             image.alt = breed.name;
 
+            const textBlock = document.createElement("div");
+            textBlock.classList.add("text-block");
+
+
+
+            textBlock.appendChild(temperament);
+            textBlock.appendChild(bredFor);
+
             card.appendChild(name);
-            card.appendChild(temperament);
             card.appendChild(image);
+            card.appendChild(textBlock);
 
             cardsContainer.appendChild(card);
 

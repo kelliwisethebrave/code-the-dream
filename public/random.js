@@ -60,11 +60,12 @@ async function randomDogBreed() {
         randomDogBreedDiv.innerHTML = `
         <div class="breed-info">
         <h2>${data.name}</h2>
-        <p>Temperament: ${data.temperament || "No temperament info available"}</p>
         <img src="https://cdn2.thedogapi.com/images/${data.reference_image_id}.jpg"
         alt="${data.name}"
         style="max-width: 800px; border-radius: 24px;">
-        </div>
+        <div class="text-block"><p><strong>Temperament:</strong> ${data.temperament || "No temperament info available"}</p>
+        <p><strong>Bred for:</strong> ${data.bred_for || "No bred for info available"}</p>
+        </div></div>
         
         
         `;
