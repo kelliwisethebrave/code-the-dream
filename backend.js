@@ -11,41 +11,42 @@ app.use(express.static("public"));
 app.get("/searched-breed", async (req, res) => {
   const searchedBreed = req.query.q;
   try {
-    const response = await fetch(`https://api.thedogapi.com/v1/breeds/search?q=${searchedBreed}`, {
-      headers: { "x-api-key": process.env.DOG_API_KEY }
-    });
-    const data = await response.json();
-    if (data.length === 0) {
-
-      return res.status(404).json({ error: "No breed found" });
-
-    }
-
-
-
-    // If there's a reference_image_id, fetch the image separately
-
-    for (let breed of data) {
-
-      if (breed.reference_image_id) {
-
-        const imgRes = await fetch(`https://api.thedogapi.com/v1/images/${breed.reference_image_id}`, {
-
-          headers: { "x-api-key": process.env.DOG_API_KEY }
-
-        });
-
-        const imgData = await imgRes.json();
-
-        breed.image = imgData; // attach full image object
-
+    const response = await fetch(
+      `https://api.thedogapi.com/v1/breeds/search?q=${searchedBreed}`,
+      {
+        headers: { "x-api-key": process.env.DOG_API_KEY },
       }
-      res.json(data);
+    );
+    const data = await response.json();
+
+    if (data.length === 0) {
+      return res.status(404).json({ error: "No breed found" });
     }
+
+    // Always fetch the image if missing
+    const enrichedData = await Promise.all(
+      data.map(async (breed) => {
+        if (!breed.image?.url && breed.reference_image_id) {
+          const imgRes = await fetch(
+            `https://api.thedogapi.com/v1/images/${breed.reference_image_id}`,
+            {
+              headers: { "x-api-key": process.env.DOG_API_KEY },
+            }
+          );
+          const imgData = await imgRes.json();
+          breed.image = { url: imgData.url };
+        }
+        return breed;
+      })
+    );
+
+    res.json(enrichedData);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to fetch dog breed" });
   }
 });
+
 
 app.get("/random-breed", async (req, res) => {
   try {
