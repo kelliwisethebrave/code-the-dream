@@ -14,7 +14,7 @@ app.get("/searched-breed", async (req, res) => {
     const response = await fetch(
       `https://api.thedogapi.com/v1/breeds/search?q=${searchedBreed}`,
       {
-        headers: { "x-api-key": process.env.DOG_API_KEY },
+        headers: { "x-api-key": process.env.DOG_API_KEY }
       }
     );
     const data = await response.json();
@@ -23,18 +23,28 @@ app.get("/searched-breed", async (req, res) => {
       return res.status(404).json({ error: "No breed found" });
     }
 
-    // Always fetch the image if missing
+    // Map breeds and enrich only when needed
     const enrichedData = await Promise.all(
       data.map(async (breed) => {
-        if (!breed.image?.url && breed.reference_image_id) {
-          const imgRes = await fetch(
-            `https://api.thedogapi.com/v1/images/${breed.reference_image_id}`,
-            {
-              headers: { "x-api-key": process.env.DOG_API_KEY },
-            }
-          );
-          const imgData = await imgRes.json();
-          breed.image = { url: imgData.url };
+        if (breed.image?.url) {
+          // already has an image, so no need to fetch
+          return breed;
+        } else if (breed.reference_image_id) {
+          // fetch image details only if missing
+          try {
+            const imageResponse = await fetch(
+              `https://api.thedogapi.com/v1/images/${breed.reference_image_id}`,
+              {
+                headers: { "x-api-key": process.env.DOG_API_KEY }
+              }
+            );
+            const imageData = await imageResponse.json();
+            breed.image = imageData; // add full image info
+          } catch (err) {
+            console.warn(
+              `Failed to fetch image for ${breed.name}: ${err.message}`
+            );
+          }
         }
         return breed;
       })
@@ -42,10 +52,10 @@ app.get("/searched-breed", async (req, res) => {
 
     res.json(enrichedData);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ error: "Failed to fetch dog breed" });
   }
 });
+
 
 
 app.get("/random-breed", async (req, res) => {
