@@ -81,6 +81,7 @@ async function randomDogBreed() {
 
 }
 
+/* random dog facts are only available with the premium version, oh well!
 async function randomDogFacts() {
     const randomDogFactsDiv = document.getElementById("randomDogFactsDiv");
     
@@ -107,72 +108,9 @@ async function randomDogFacts() {
     }
     
 
-}
+}*/
 
 fetchRandomDogPictureButton.addEventListener("click", randomDogImage);
 fetchRandomDogBreedButton.addEventListener("click", randomDogBreed);
-fetchRandomDogFactsButton.addEventListener("click", randomDogFacts);
+//fetchRandomDogFactsButton.addEventListener("click", randomDogFacts);
 
-//this function is used to display relevant breed information on the my_dogs.html page, first function is grab the info
-/*
-async function getBreedInfo(breedName) {
-    const response = await fetch(`/searched-breed?q=${breedName}`);
-    if (!response.ok) throw new Error("Failed to fetch breed");
-    return response.json();
-}
- */
-
-
-
-/*
-    catch(error){
-        console.error(error);
-        const errorMessageElement = document.getElementById("error-message");
-
-        errorMessageElement.textContent = "Failed to load data. Please try again later.";
-        errorMessageElement.style.color = "red";
-    }
-        
-
-
-}
-*/
-/*getBreedInfo("beagle")
-  .then(data => console.log(data))
-  .catch(err => console.error(err));
-*/ 
-/*
-async function sendBreedData() {
-    try {
-        const data = await getBreedInfo("husky");
-        console.log(data);
-    } catch (error) {
-        console.error(error);
-    }
-}  
-
-sendBreedData();*/
-
-/*async function fetchData(){
-
-    try{
-
-
-    }
-}
-    */
-
-/*fetch("https://api.artic.edu/api/v1/artworks")
-    .then(response => {
-
-        if(!response.ok){
-            throw new Error("Could not fetch resource");
-        }
-        return response.json();
-    })    
-//.then(response => response.json())
-    //.then(response => console.log(response)) will show in log
-    .then(data => console.log(data))
-    //.then(data => console.log(data)) // all data
-    .catch(error => console.error(error));
-    */
