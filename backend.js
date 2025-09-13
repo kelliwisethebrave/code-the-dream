@@ -15,9 +15,31 @@ app.get("/searched-breed", async (req, res) => {
       headers: { "x-api-key": process.env.DOG_API_KEY }
     });
     const data = await response.json();
-    if(data.length === 0){
-      res.status(404).json({ error: "No breed found"});
-    } else{
+    if (data.length === 0) {
+
+      return res.status(404).json({ error: "No breed found" });
+
+    }
+
+
+
+    // If there's a reference_image_id, fetch the image separately
+
+    for (let breed of data) {
+
+      if (breed.reference_image_id) {
+
+        const imgRes = await fetch(`https://api.thedogapi.com/v1/images/${breed.reference_image_id}`, {
+
+          headers: { "x-api-key": process.env.DOG_API_KEY }
+
+        });
+
+        const imgData = await imgRes.json();
+
+        breed.image = imgData; // attach full image object
+
+      }
       res.json(data);
     }
   } catch (err) {
