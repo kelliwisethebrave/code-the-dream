@@ -8,6 +8,7 @@ On the **index** page you can search for dog breeds, and if the breed that is se
 To view in **any web browser**, you can visit https://paw-finder.up.railway.app/ where both the frontend and backend files are hosted and can be viewed **without any other steps**.
 
 To view the project locally, follow these steps:
+
     1. Download the project from github at https://github.com/kelliwisethebrave/code-the-dream by clicking on the green Code button, and selecting "Download Zip."
     
     2. Unzip the files.
