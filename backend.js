@@ -3,6 +3,7 @@ import fetch from "node-fetch";
 import dotenv from "dotenv";
 
 dotenv.config();
+console.log("API KEY:", process.env.DOG_API_KEY); //temp check
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -14,8 +15,8 @@ app.get("/searched-breed", async (req, res) => {
     const response = await fetch(
       `https://api.thedogapi.com/v1/breeds/search?q=${searchedBreed}`,
       {
-        headers: { "x-api-key": process.env.DOG_API_KEY }
-      }
+        headers: { "x-api-key": process.env.DOG_API_KEY },
+      },
     );
     const data = await response.json();
 
@@ -35,19 +36,19 @@ app.get("/searched-breed", async (req, res) => {
             const imageResponse = await fetch(
               `https://api.thedogapi.com/v1/images/${breed.reference_image_id}`,
               {
-                headers: { "x-api-key": process.env.DOG_API_KEY }
-              }
+                headers: { "x-api-key": process.env.DOG_API_KEY },
+              },
             );
             const imageData = await imageResponse.json();
             breed.image = imageData; // add full image info
           } catch (err) {
             console.warn(
-              `Failed to fetch image for ${breed.name}: ${err.message}`
+              `Failed to fetch image for ${breed.name}: ${err.message}`,
             );
           }
         }
         return breed;
-      })
+      }),
     );
 
     res.json(enrichedData);
@@ -56,25 +57,22 @@ app.get("/searched-breed", async (req, res) => {
   }
 });
 
-
-
 app.get("/random-breed", async (req, res) => {
   try {
     const response = await fetch("https://api.thedogapi.com/v1/breeds", {
-      headers: { "x-api-key": process.env.DOG_API_KEY }
+      headers: { "x-api-key": process.env.DOG_API_KEY },
     });
     const data = await response.json();
-     //the above returns all dog breeds -> to choose one, use Math.floor and
+    //the above returns all dog breeds -> to choose one, use Math.floor and
     //Math.random with data.length to choose a random breed
 
     const randomBreed = data[Math.floor(Math.random() * data.length)];
-  
-    res.json(randomBreed);
 
+    res.json(randomBreed);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch dog breed" });
   }
-});  
+});
 
 /*random dog facts is a premium feature!
 app.get("/random-facts", async (req, res) => {
@@ -96,21 +94,19 @@ app.get("/random-facts", async (req, res) => {
 });  
 */
 
-
 app.get("/random-dog-picture", async (req, res) => {
   try {
     const response = await fetch("https://api.thedogapi.com/v1/images/search", {
-      headers: { "x-api-key": process.env.DOG_API_KEY }
+      headers: { "x-api-key": process.env.DOG_API_KEY },
     });
     const data = await response.json();
 
-  
     res.json(data);
-    
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch dog image" });
   }
 });
 
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
-
+app.listen(PORT, () =>
+  console.log(`Server running at http://localhost:${PORT}`),
+);
