@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import dotenv from "dotenv";
 
 dotenv.config();
-console.log("API KEY:", process.env.DOG_API_KEY); //temp check
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
